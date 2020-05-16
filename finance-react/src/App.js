@@ -33,7 +33,7 @@ function App(){
   return (
     <div id="finance-root">
       <InputSection />
-      <OutputSection></OutputSection>
+      <OutputSection />
     </div>
   );
 }
