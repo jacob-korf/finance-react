@@ -25,6 +25,24 @@ function reducer(state = initialState, action){
                 ...state,
                 purchases: state.purchases.filter(purchase => purchase.id !== action.payload.id), 
         };
+        
+        case Action.LoadIncome:
+        return{
+            ...state,
+            income: action.payload,
+        }
+
+        case Action.FinishAddingIncome:
+            return{
+                ...state,
+                income: [action.payload, ...state.income],
+        };
+
+        case Action.FinishDeletingIncome:
+            return{
+                ...state,
+                purchases: state.income.filter(income => income.id !== action.payload.id), 
+        };
         default: 
         return state;
     }

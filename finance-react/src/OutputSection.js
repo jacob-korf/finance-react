@@ -2,6 +2,9 @@ import React from 'react';
 
 import CanvasJSReact from './canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+export function OutputSection(props){
+  
 const options = {
   backgroundColor: "#282c34",
   title: {
@@ -19,13 +22,11 @@ const options = {
   data: [{				
             type: "bar",
             dataPoints: [
-                { label: "Spending", y: 478 , color: "red" },
-                { label: "Income",  y: 2700 , color: "green" },
+                { label: "Spending", y: props.pur , color: "red" },
+                { label: "Income",  y: props.income , color: "green" },
             ]
    }]
 }
-
-export function OutputSection(props){
     return (
      <div id="outputBox">
        <div id="spendingInfoBox">

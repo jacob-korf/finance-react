@@ -5,29 +5,28 @@ import {Income} from './Income.js';
 import { NewIncome } from './newIncome.js';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {loadUserPurchases, startDeletingPurchase} from './actions';
+import {loadUserPurchases, loadUserIncome, startDeletingPurchase, startDeletingIncome} from './actions';
 
-const initialIncome = [
-{desc: "Weekly Deposit", value: "$400"},
-{desc: "lol", value: "$400"},
-{desc: "Baled Hay", value: "$100"},
-{desc: "Sold car", value: "$350"},
-];
 export function InputSection(props){
 
   let user = "";
   const purchases = useSelector(state => state.purchases);
+  const income = useSelector(state => state.income);
   const dispatch = useDispatch();
 
     
-    const [usern, setUsern] = useState("");
 
     React.useEffect(() => { 
     user = props.user;
-    dispatch(loadUserPurchases(user));
-     })
 
-    const [income, setIncome] = useState(initialIncome);
+    dispatch(loadUserPurchases(user));
+    dispatch(loadUserIncome(user));
+
+    props.pur(purchases.reduce((totalPurchases, purchase) => totalPurchases + purchase.amount, 0));
+    props.inc(income.reduce((totalIncome, inc) => totalIncome + inc.amount, 0))
+     
+  })
+
   
     const deletePurchase = name => {
       if(user.length > 0) {
@@ -37,18 +36,21 @@ export function InputSection(props){
       }
      }
 
-    const deleteIncome = name => {
-        setIncome(income => income.filter(income => income.description !== name));
-    }
-    const addIncome = name => {
-        setIncome(income => [name, ...income])
-    }
+     const deleteIncome = name => {
+      if(user.length > 0) {
+        dispatch(startDeletingIncome(name))
+      } else {
+        alert("Log on to your personal username before deleting purchases")
+      }
+     }
+
+
   return(
     <div id ="inputBox">
       <div id="incomeBox">
         <p className="boxHeader">Incomes</p>
-        <NewIncome add = {addIncome}/>
-        {income.map(inc => <Income key = {inc} inc = {inc} deleteIncome = {deleteIncome}/>)};
+        <NewIncome user = {props.user}/>
+  {/*income.map(income => <Income  key={income.id} income = {income} deleteIncome = {deleteIncome}/>)*/}
       </div>
       <div id="purchasesBox">
         <p className="boxHeader">Purchases</p>

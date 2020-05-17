@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {loadUserPurchases, startAddingPurchase} from './actions';
+import {useDispatch} from 'react-redux';
+import {startAddingPurchase} from './actions';
 export function NewPurchase(props) {
     const [val, setVal] = useState("");
     const [desc, setDesc] = useState("");
-    const [counterPurchases, setPCounter] = useState(0);
     const dispatch = useDispatch();
 
     const onAdd = () => {
