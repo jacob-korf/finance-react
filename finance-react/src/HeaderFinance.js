@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Username } from './Username';
-export function HeaderFinance() {
+export function HeaderFinance(props) {
+    const [username, setUsername] = useState("");
     return (
         <div id = "finance-head-root">
             <p id = "header">Financial Tool</p>
             <div id = "userBox">
-             <Username />
+            <div id = "userDiv">
+        <p className="usernameHeader">Username: <input type = "text" onChange = {e => setUsername(e.target.value)}/></p>
+        <input className = "addButton" type = "button"  value = "Log in" onClick={() => props.user(username)}/> 
+        </div>
             </div>
         </div>
 

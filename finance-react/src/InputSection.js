@@ -4,11 +4,14 @@ import {Purchase} from './Purchase.js';
 import {Income} from './Income.js';
 import { NewIncome } from './newIncome.js';
 
+import {useSelector, useDispatch} from 'react-redux';
+import {loadUserPurchases} from './actions';
+
 const initialPurchases = [
-{desc: "Groceries", value: "$400"},
-{desc: "Gas", value: "$10"},
-{desc: "Car repair", value: "$100"},
-{desc: "Rent", value: "$350"},
+{description: "Groceries", amount: "400"},
+{description: "Gas", amount: "10"},
+{description: "Car repair", amount: "$00"},
+{description: "Rent", amount: "350"},
 ];
 
 const initialIncome = [
@@ -18,17 +21,53 @@ const initialIncome = [
 {desc: "Sold car", value: "$350"},
 ];
 export function InputSection(props){
-    const [purchases, setPurchases] = useState(initialPurchases);
-    const [income, setIncome] = useState(initialIncome);
-    const deletePurchase = name => {
-        setPurchases(purchases => purchases.filter(purchases => purchases.desc !== name));
+
+  let user = "";
+  const purchases = useSelector(state => state.purchases);
+  const dispatch = useDispatch();
+
+    const onLoad = () => {
+      dispatch(loadUserPurchases(user))
     }
+
+    function submitUsername(){
+      user = props.user;
+      onLoad.call();
+    }
+    const [usern, setUsern] = useState("");
+
+
+
+    React.useEffect(() => { 
+    user = props.user;
+    dispatch(loadUserPurchases(user));
+     })
+
+    const [income, setIncome] = useState(initialIncome);
+   {/* const deletePurchase = name => {
+        setPurchases(purchases => purchases.filter(purchases => purchases.description !== name));
+    }
+    
+    const [purchases, setPurchases] = useState(initialPurchases);
+     user = props.user;
+  dispatch(loadUserPurchases(user));
+setPurchases(pur)
+
+React.useEffect(() => { alert("Your file is being uploaded!");
+user = props.user;
+dispatch(loadUserPurchases(user));
+setPurchases(pur);
+ }, [userna])
     const addPurchase = name => {
         setPurchases(purchases => [name, ...purchases])
     }
+    
+       <NewPurchase user = {props.user}/>*/
+    }
+    const deletePurchase = "";
 
     const deleteIncome = name => {
-        setPurchases(income => income.filter(income => income.desc !== name));
+        setIncome(income => income.filter(income => income.description !== name));
     }
     const addIncome = name => {
         setIncome(income => [name, ...income])
@@ -36,14 +75,13 @@ export function InputSection(props){
   return(
     <div id ="inputBox">
       <div id="incomeBox">
-        <p className="boxHeader">Incomes</p>
+        <p className="boxHeader">Incomes {props.user}</p>
         <NewIncome add = {addIncome}/>
         {income.map(inc => <Income key = {inc} inc = {inc} deleteIncome = {deleteIncome}/>)};
       </div>
       <div id="purchasesBox">
         <p className="boxHeader">Purchases</p>
-        <NewPurchase add = {addPurchase}/>
-        {purchases.map(purch => <Purchase key = {purch.desc} purch = {purch} deletePurchase = {deletePurchase}/>)};
+  {purchases.map(purchase => <Purchase  key={purchase.id} purchase = {purchase}/>)};
       </div>
       </div>
   );

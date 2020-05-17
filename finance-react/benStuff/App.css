@@ -1,0 +1,130 @@
+#finance-root{
+  background-color: #282c34;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#header{
+  color: white;
+  font-size: 30pt;
+  font-weight: bold;
+  margin-left: 5%;
+}
+
+#inputBox{
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+}
+
+#outputBox{
+  display: flex;
+  flex-direction: column;
+  margin-top: 134px;
+  margin-left: 15px;
+ /* margin-right: 5%;*/
+}
+
+
+
+#incomeBox{
+  height: 225px;
+  width: 500px;
+  border: 3px solid white;
+  border-radius: 10px;
+  margin-left: 5%;
+}
+
+#purchasesBox{
+  height: 380px;
+  width: 500px;
+  border-radius: 10px;
+  border: 3px solid white;
+  margin-left: 5%;
+  margin-top: 20px;
+}
+
+#spendingInfoBox{
+  height: 160px;
+  width: 830px;
+  border: 3px solid white;
+  border-radius: 10px;
+  margin-left: 5%;
+}
+
+#graphBox{
+  height: 380px;
+  width: 770px;
+  border: 3px solid white;
+  border-radius: 10px;
+  margin-left: 5%;
+  margin-top: 25px;
+  padding: 30px;
+}
+
+
+
+
+.boxHeader{
+  color: white;
+  font-size: 25pt;
+  /*font-weight: bold;*/
+  text-decoration: underline;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.usernameBoxHeader{
+  color: white;
+  font-size: 20pt;
+  text-decoration: underline;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.instruction{
+  margin-left: 20px;
+  font-size: 14pt;
+  color: white;
+}
+
+.paragraphText{
+  margin-left: 20px;
+  font-size: 14pt;
+  color: white;
+}
+
+.incomeType{
+  margin-left: 60px;
+  font-size: 14pt;
+  margin-top: 25px;
+  color: white;
+}
+
+#userInputBox{
+  height: auto;
+  width: 300px;
+  border: 3px solid white;
+  border-radius: 10px;
+  margin-left: 5%;
+}
+
+#usernameInputField{
+  padding: 10px;
+  height: 8px;
+  width: 135px;
+  margin-left: 10px;
+  margin-bottom: 15px;
+  border-radius: 2px;
+}
+
+#usernameInputButton{
+  margin-left: 20px;
+  height: 30px;
+  width: 75px;
+  border-radius: 2px;
+  /*margin-right: 10px;*/
+}
