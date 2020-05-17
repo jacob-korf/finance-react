@@ -13,7 +13,18 @@ function reducer(state = initialState, action){
             ...state,
             purchases: action.payload,
         }
-
+        
+        case Action.FinishAddingPurchase:
+            return{
+                ...state,
+                purchases: [action.payload, ...state.purchases],
+        };
+        
+        case Action.FinishDeletingPurchase:
+            return{
+                ...state,
+                purchases: state.purchases.filter(purchase => purchase.id !== action.payload.id), 
+        };
         default: 
         return state;
     }

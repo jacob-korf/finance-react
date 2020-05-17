@@ -5,7 +5,7 @@ import {Income} from './Income.js';
 import { NewIncome } from './newIncome.js';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {loadUserPurchases} from './actions';
+import {loadUserPurchases, startDeletingPurchase} from './actions';
 
 const initialIncome = [
 {desc: "Weekly Deposit", value: "$400"},
@@ -29,7 +29,13 @@ export function InputSection(props){
 
     const [income, setIncome] = useState(initialIncome);
   
-    const deletePurchase = "";
+    const deletePurchase = name => {
+      if(user.length > 0) {
+        dispatch(startDeletingPurchase(name))
+      } else {
+        alert("Log on to your personal username before deleting purchases")
+      }
+     }
 
     const deleteIncome = name => {
         setIncome(income => income.filter(income => income.description !== name));
@@ -47,7 +53,7 @@ export function InputSection(props){
       <div id="purchasesBox">
         <p className="boxHeader">Purchases</p>
         <NewPurchase user = {props.user}/>
-  {purchases.map(purchase => <Purchase  key={purchase.id} purchase = {purchase}/>)};
+  {purchases.map(purchase => <Purchase  key={purchase.id} purchase = {purchase} deletePurchase = {deletePurchase}/>)};
       </div>
       </div>
   );

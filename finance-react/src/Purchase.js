@@ -14,6 +14,7 @@ export function Purchase(props) {
     return (
         <div className="purchase">
             <p id = "purchaseText">
+            <span className = "deleteIncome" onClick= {() => props.deletePurchase(purchase.id)}>&#x2716; </span>
                <b>Purchase :</b> {purchase.description}  ${purchase.amount}
             </p>
         </div>

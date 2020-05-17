@@ -6,7 +6,7 @@ export function NewIncome(props) {
     return (
         <div>
        <p className = "paragraphText"> Description: <input type = "text" onChange = {e => setDesc(e.target.value)}/></p>
-         <p className = "paragraphText">Value: <input type = "text" onChange = {e => setVal(e.target.value)}/></p>
+         <p className = "paragraphText">Value: <input type = "number" onChange = {e => setVal(e.target.value)}/></p>
          <input className = "addButton" type = "button"  value = "Add new income" onClick = {() => props.add({desc: desc, value: val})}/>
         </div>
     );

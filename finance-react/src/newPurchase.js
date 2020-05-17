@@ -8,13 +8,18 @@ export function NewPurchase(props) {
     const dispatch = useDispatch();
 
     const onAdd = () => {
-        dispatch(startAddingPurchase(props.user, val, desc))
+        if(props.user.length > 0) {
+            dispatch(startAddingPurchase(props.user, val, desc))
+
+        } else {
+            alert("Log into your personal username before adding new purchases")
+        }
     }
 
     return (
         <div>
          <p className = "paragraphText"> Description: <input type = "text" onChange = {e => setDesc(e.target.value)}/></p>
-         <p className = "paragraphText">Value: <input type = "text" onChange = {e => setVal(e.target.value)}/></p>
+         <p className = "paragraphText">Value: <input type = "number" onChange = {e => setVal(e.target.value)}/></p>
          <input className = "addButton" type = "button"  value = "Add new purchase" onClick = {onAdd}/>
         </div>
     );
