@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { Username } from './Username';
 export function HeaderFinance(props) {
     const [username, setUsername] = useState("");
     return (

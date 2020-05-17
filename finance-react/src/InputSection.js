@@ -81,6 +81,7 @@ setPurchases(pur);
       </div>
       <div id="purchasesBox">
         <p className="boxHeader">Purchases</p>
+        <NewPurchase user = {props.user}/>
   {purchases.map(purchase => <Purchase  key={purchase.id} purchase = {purchase}/>)};
       </div>
       </div>

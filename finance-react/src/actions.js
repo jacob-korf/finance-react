@@ -23,7 +23,8 @@ function checkForErrors(response) {
     return response;
 }
 
-const host = 'https://financeapi.duckdns.org:8442';
+{/*const host = 'https://financeapi.duckdns.org:8442';*/}
+const host = 'https://162.243.166.76:8442';
 
 export function loadUserPurchases(user){
     return dispatch => {

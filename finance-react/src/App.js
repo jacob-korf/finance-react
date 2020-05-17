@@ -18,10 +18,9 @@ function App(){
   }
   return (
     <div id = "finance-root">
-      {userName}
-      <UserInputSection user={parentFunction}/>
+      <HeaderFinance user={parentFunction}/>
     <div id="finance-data">
-      {/*<InputSection user={userName}/>*/}
+      {<InputSection user={userName}/>}
       <OutputSection />
     </div>
     </div>
@@ -46,8 +45,8 @@ function UserInputSection(props){
     }
     const [usern, setUsern] = useState("");
   return (
-   <div id="userInputBox">
-   <p className = "usernameBoxHeader">Enter your username</p>
+   <div id="userInputBox"> 
+   <p className = "usernameBoxHeader">Enter your usernames</p>
      <button id="usernameInputButton" onClick={submitUsername}>Enter</button>
       <input id="usernameInputField" type = "text" onChange = {e => setUsern(e.target.value)}></input>
       {purchases.map(purchase => <Purchase  key={purchase.id} purchase = {purchase}/>)} 
