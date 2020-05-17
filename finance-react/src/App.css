@@ -15,7 +15,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border: 10px solid white;
 }
 
 #header{
@@ -23,7 +22,8 @@
   font-size: 30pt;
   font-weight: bold;
   margin-left: 5%;
-  width: 70%;
+  margin-bottom:0;
+  margin-top: 2%;
 }
 
 #inputBox{
@@ -50,9 +50,10 @@
   flex: 5; 
   display: "flex"; 
   flex-direction: "column";
-  border: 3px solid white;
   border-radius: 10px;
   margin-top: 1%;
+  margin-bottom: 0;
+  margin-right: 2%;
 }
 
 #incomeBox{
@@ -66,7 +67,6 @@
 
 #userDiv{
   text-align: right;
-  margin-right: 1%;
 }
 
 #purchasesBox{
@@ -101,6 +101,7 @@
 
 .addButton {
   margin-left: 20px;
+  margin-top: 10px;
 }
 
 .boxHeader{
@@ -119,6 +120,7 @@
   /*font-weight: bold;*/
   margin-left: 20px;
   margin-top: 1%;
+  margin-bottom: 0%;
 }
 
 .instruction{
