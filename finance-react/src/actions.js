@@ -1,6 +1,7 @@
 export const Action = Object.freeze({
     LoadPurchases: 'LoadPurchases',
     FinishAddingPurchase: 'FinishAddingPurchase',
+    FinishDeletingPurchase: 'FinishDeletingPurchase',
 });
 
 export function loadPurchases(purchases){
@@ -24,7 +25,15 @@ function checkForErrors(response) {
     return response;
 }
 
-const host = 'https://financeapi.duckdns.org:8442';
+export function finishDeletingPurchase(purchase){
+    return{
+        type: Action.FinishDeletingPurchase,
+        payload: purchase,
+    };
+}
+
+//const host = 'https://financeapi.duckdns.org:8442';
+const host = 'https://162.243.166.76:8442';
 
 export function loadUserPurchases(user){
     return dispatch => {
@@ -57,9 +66,27 @@ export function startAddingPurchase(username, amount, description){
             .then(data => {
                  if(data.ok) {
                     purchase.id = data.id;
-                    dispatch(FinishAddingPurchase(purchase));
+                    dispatch(FinishAddingPurchase(data.purchase));
                 }
             })
         .catch(e => console.error(e));
+    };
+}
+
+export function startDeletingPurchase(purchaseId) {
+    const options = {
+        method: 'DELETE',
+    };
+
+    return dispatch => {
+        fetch(`${host}/finance/${purchaseId}`, options)
+         .then(checkForErrors)
+         .then(response => response.json())
+         .then(data => {
+             if(data.ok) {
+                dispatch(finishDeletingPurchase(purchaseId));
+             }
+         })
+         .catch(e => console.error(e));
     };
 }

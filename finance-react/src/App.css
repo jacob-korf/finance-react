@@ -128,3 +128,11 @@
   border-radius: 2px;
   /*margin-right: 10px;*/
 }
+
+#descriptionInputField{
+  margin-left: 140px;
+}
+
+#deleteButton{
+  margin-top: 20px;
+}
