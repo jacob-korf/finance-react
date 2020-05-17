@@ -3,7 +3,8 @@ import React from 'react';
 import './App.css';
 
 import CanvasJSReact from './canvasjs.react';
-import { InputSection } from './InputSection';
+import { InputSection } from './InputSection.js';
+import { HeaderFinance } from './HeaderFinance';
 //var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const options = {
@@ -31,9 +32,12 @@ const options = {
 
 function App(){
   return (
-    <div id="finance-root">
+    <div id = "finance-root">
+      <HeaderFinance />
+    <div id="finance-data">
       <InputSection />
       <OutputSection />
+    </div>
     </div>
   );
 }

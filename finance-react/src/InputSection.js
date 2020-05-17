@@ -34,13 +34,11 @@ export function InputSection(props){
         setIncome(income => [name, ...income])
     }
   return(
-    <div id="inputBox">
-    <p id = "header">Financial Tool</p>
-    <div id ="inputRow">
+    <div id ="inputBox">
       <div id="incomeBox">
         <p className="boxHeader">Incomes</p>
         <NewIncome add = {addIncome}/>
-        {income.map(inc => <Income key = {inc.desc} inc = {inc} deleteIncome = {deleteIncome}/>)};
+        {income.map(inc => <Income key = {inc} inc = {inc} deleteIncome = {deleteIncome}/>)};
       </div>
       <div id="purchasesBox">
         <p className="boxHeader">Purchases</p>
@@ -48,7 +46,6 @@ export function InputSection(props){
         {purchases.map(purch => <Purchase key = {purch.desc} purch = {purch} deletePurchase = {deletePurchase}/>)};
       </div>
       </div>
-    </div>
   );
 }
 
