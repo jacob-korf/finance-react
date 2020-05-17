@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import {Purchase} from './Purchase';
 import {useSelector, useDispatch} from 'react-redux';
-import {loadUserPurchases} from './actions';
+import {loadUserPurchases, startAddingPurchase} from './actions';
 import CanvasJSReact from './canvasjs.react';
 import { InputSection } from './InputSection';
 
@@ -78,11 +78,18 @@ function UserInputSection(props){
       onLoad.call();
     }
 
+    const onAdd = () => {
+      dispatch(startAddingPurchase(document.getElementById("usernameInputField").value, document.getElementById("amountInputField").value, document.getElementById("descriptionInputField").value))
+    }
+
   return (
    <div id="userInputBox">
    <p className = "usernameBoxHeader">Enter your username</p>
      <button id="usernameInputButton" onClick={submitUsername}>Enter</button>
       <input id="usernameInputField" type = "text"></input>
+      <button id="purchaseInputButton" onClick={onAdd}>Enter</button>
+      <input id="amountInputField" type = "text"></input>
+      <input id="descriptionInputField" type = "text"></input>
       {purchases.map(purchase => <Purchase  key={purchase.id} purchase = {purchase}/>)}
    </div>
    ); 

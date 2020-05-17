@@ -1,11 +1,19 @@
 export const Action = Object.freeze({
     LoadPurchases: 'LoadPurchases',
+    FinishAddingPurchase: 'FinishAddingPurchase',
 });
 
 export function loadPurchases(purchases){
     return {
         type: Action.LoadPurchases,
         payload: purchases,
+    };
+}
+
+export function FinishAddingPurchase(purchase){
+    return {
+        type: Action.FinishAddingPurchase,
+        payload: purchase,
     };
 }
 
@@ -26,6 +34,30 @@ export function loadUserPurchases(user){
             .then(data => {
                  if(data.ok) {
                     dispatch(loadPurchases(data.purchases));
+                }
+            })
+        .catch(e => console.error(e));
+    };
+}
+
+
+export function startAddingPurchase(username, amount, description){
+    const purchase = {username, amount, description};
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(purchase),
+    }
+    return dispatch => {
+        fetch(`${host}/finance`, options)
+            .then(checkForErrors)
+            .then(response => response.json())
+            .then(data => {
+                 if(data.ok) {
+                    purchase.id = data.id;
+                    dispatch(FinishAddingPurchase(purchase));
                 }
             })
         .catch(e => console.error(e));

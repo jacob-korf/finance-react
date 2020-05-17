@@ -12,7 +12,12 @@ function reducer(state = initialState, action){
         return{
             ...state,
             purchases: action.payload,
-        }
+        };
+        case Action.FinishAddingPurchase:
+            return{
+                ...state,
+                purchases: [action.payload, ...state.purchases],
+            };
 
         default: 
         return state;
