@@ -1,10 +1,13 @@
+//import React, {useEffect} from 'react';
 import React from 'react';
-
 import './App.css';
-
+import {Purchase} from './Purchase';
+import {useSelector, useDispatch} from 'react-redux';
+import {loadUserPurchases} from './actions';
 import CanvasJSReact from './canvasjs.react';
 import { InputSection } from './InputSection';
-//var CanvasJS = CanvasJSReact.CanvasJS;
+
+
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const options = {
   backgroundColor: "#282c34",
@@ -29,16 +32,21 @@ const options = {
    }]
 }
 
+
+
+
 function App(){
+ 
+  
   return (
     <div id="finance-root">
+    <UserInputSection />
+     
       <InputSection />
-      <OutputSection></OutputSection>
+      <OutputSection /> 
     </div>
   );
 }
-
-
 
 function OutputSection(props){
  return (
@@ -57,4 +65,44 @@ function OutputSection(props){
   ); 
 }
 
+function UserInputSection(props){
+  let user = "";
+  const purchases = useSelector(state => state.purchases);
+  const dispatch = useDispatch();
+    const onLoad = () => {
+      dispatch(loadUserPurchases(user))
+    }
+
+    function submitUsername(){
+      user = document.getElementById("usernameInputField").value;
+      onLoad.call();
+    }
+
+  return (
+   <div id="userInputBox">
+   <p className = "usernameBoxHeader">Enter your username</p>
+     <button id="usernameInputButton" onClick={submitUsername}>Enter</button>
+      <input id="usernameInputField" type = "text"></input>
+      {purchases.map(purchase => <Purchase  key={purchase.id} purchase = {purchase}/>)}
+   </div>
+   ); 
+ }
+
 export default App;
+
+
+
+ /*useEffect(() => {
+    dispatch(loadPurchases([
+      {id: 1, username: "ben", amount: 50, description: "rent1"},
+        {id: 1, username: "ben", amount: 55, description: "rent2"},
+    {id: 1, username: "ben", amount: 60, description: "rent3"},
+    ]));
+  }, [dispatch]);
+  */
+
+
+  /*
+  <button onClick={submitUsername}>load</button>
+    <input id="usernameInputBox" type = "text"></input>
+*/
