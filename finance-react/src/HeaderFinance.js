@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 export function HeaderFinance(props) {
     const [username, setUsername] = useState("");
+    
     return (
         <div id = "finance-head-root">
             <p id = "header">Financial Tool</p>

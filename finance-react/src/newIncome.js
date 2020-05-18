@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {startAddingIncome} from './actions';
+import {startAddingPurchase} from './actions';
 export function NewIncome(props) {
     const [val, setVal] = useState("");
     const [desc, setDesc] = useState("");
     const dispatch = useDispatch();
     const onAdd = () => {
         if(props.user.length > 0) {
-            dispatch(startAddingIncome(props.user, val, desc))
+            dispatch(startAddingPurchase(props.user, val, desc))
+            props.load();
 
         } else {
             alert("Log into your personal username before adding new purchases")

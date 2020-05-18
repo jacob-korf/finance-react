@@ -8,7 +8,8 @@ export function NewPurchase(props) {
 
     const onAdd = () => {
         if(props.user.length > 0) {
-            dispatch(startAddingPurchase(props.user, val, desc))
+            dispatch(startAddingPurchase(props.user, val*-1, desc))
+            props.load();
 
         } else {
             alert("Log into your personal username before adding new purchases")

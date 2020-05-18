@@ -1,5 +1,5 @@
 export const Action = Object.freeze({
-    LoadPurchases: 'LoadPurchases', LoadIncome: 'LoadIncome',
+    LoadPurchases: 'LoadPurchases',
 });
 
 export function loadPurchases(purchases){
@@ -20,26 +20,6 @@ export function finishDeletingPurchase(purchase){
     return{
         type: Action.FinishDeletingPurchase,
         payload: purchase,
-    };
-}
-export function loadIncome(income){
-    return {
-        type: Action.LoadIncome,
-        payload: income,
-    };
-}
-
-export function FinishAddingIncome(income){
-    return {
-        type: Action.FinishAddingIncome,
-        payload: income,
-    };
-} 
-
-export function finishDeletingIncome(income){
-    return{
-        type: Action.FinishDeletingIncome,
-        payload: income,
     };
 }
 
@@ -108,58 +88,3 @@ export function startDeletingPurchase(purchaseId) {
     };
 }
 
-
-export function loadUserIncome(user){
-    return dispatch => {
-        fetch(`${host}/income/${user}`)
-            .then(checkForErrors)
-            .then(response => response.json())
-            .then(data => {
-                 if(data.ok) {
-                    dispatch(loadIncome(data.income));
-                }
-            })
-        .catch(e => console.error(e));
-    };
-}
-
-export function startAddingIncome(username, amount, description){
-    const income = {username, amount, description};
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(income),
-    }
-    return dispatch => {
-        fetch(`${host}/income`, options)
-            .then(checkForErrors)
-            .then(response => response.json())
-            .then(data => {
-                 if(data.ok) {
-                    income.id = data.id;
-                    dispatch(FinishAddingIncome(income));
-                }
-            })
-        .catch(e => console.error(e));
-    };
-}
-
-export function startDeletingIncome(incomeId) {
-    const options = {
-        method: 'DELETE',
-    };
-
-    return dispatch => {
-        fetch(`${host}/income/${incomeId}`, options)
-         .then(checkForErrors)
-         .then(response => response.json())
-         .then(data => {
-             if(data.ok) {
-                dispatch(finishDeletingIncome(incomeId));
-             }
-         })
-         .catch(e => console.error(e));
-    };
-}

@@ -8,7 +8,7 @@ export function Purchase(props) {
         <div className="purchase">
             <p id = "purchaseText">
             <span className = "deletePurchase" onClick= {() => props.deletePurchase(purchase.id)}>&#x2716; </span>
-               <b>Purchase:</b> {purchase.description}  ${purchase.amount}
+               <b>Purchase:</b> {purchase.description}  ${purchase.amount*-1}
             </p>
         </div>
     )
